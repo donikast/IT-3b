@@ -13,8 +13,8 @@
 		<div class="form-container">
 			<form action="registration" method="post">
 				<div class="mt20-mb10">
-					<label for="personal-name">Име</label> <input type="text"
-						name="personal-name" id="personal-name"
+					<label for="personal-name">Име</label>
+					 <input type="text"	name="personal-name" id="personal-name"
 						placeholder="Въведете име за контакт" />
 				</div>
 				<div class="mt20-mb10">
