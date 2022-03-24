@@ -15,6 +15,11 @@ public class User {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 
 	public String getPersonalName() {
 		return personalName;
@@ -42,7 +47,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(username);
+		return Objects.hash(password, username);
 	}
 
 	@Override
@@ -54,9 +59,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(username, other.username);
+		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
-	
-	
-
 }
