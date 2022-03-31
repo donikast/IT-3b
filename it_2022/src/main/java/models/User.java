@@ -1,12 +1,23 @@
 package models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
 
+	private int id;
 	private String personalName;
 	private String username;
 	private String password;
+	private String jobTitle;
+	private String description;
+	private String email;
+	private String phone;
+	private Address address;
+	private List<Skill> proffesionalSkills;
+	private List<Skill> personalSkills;
 	
 	public User() {}
 
@@ -14,6 +25,13 @@ public class User {
 		this.personalName = personalName;
 		this.username = username;
 		this.password = password;
+		this.jobTitle="Не е зададен";
+		this.description="Не е зададен";
+		this.email="Не е зададен";
+		this.phone="Не е зададен";
+		address= new Address();
+		proffesionalSkills = new ArrayList<Skill>(); 
+		personalSkills = new ArrayList<Skill>(); 	
 	}
 	
 	public User(String username, String password) {
@@ -43,6 +61,71 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getJobTitle() {
+		return jobTitle;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Skill> getProffesionalSkills() {
+		return proffesionalSkills;
+	}
+
+	public void setProffesionalSkills(List<Skill> proffesionalSkills) {
+		this.proffesionalSkills = proffesionalSkills;
+	}
+
+	public List<Skill> getPersonalSkills() {
+		return personalSkills;
+	}
+
+	public void setPersonalSkills(List<Skill> personalSkills) {
+		this.personalSkills = personalSkills;
 	}
 
 	@Override
