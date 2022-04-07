@@ -19,7 +19,9 @@
 
 	<div class="content">
 	
-	<form action="user" method="post"></form>
+	<form action="user" method="post"> 
+	<input type="hidden" name="id" value="<%= user.getId() %>">
+	
 		<div>
 			<div class="profile-image-container">
 				<img src="images/male.svg" />
@@ -28,23 +30,29 @@
 				<h2>Профилна информация</h2>
 				<p>Име:</p>
 				<input type="text" name="personal-name" value="<%= user.getPersonalName() %>" />
-				<p>Професия: <%= user.getJobTitle() %></p>
-				<p>Описание:<%= user.getDescription() %></p>
+				<p>Професия:</p>
+				<input type="text" name="job-title" value="<%= user.getJobTitle() %>" />
+				<p>Описание:</p>
+			    <input type="text" name="description" value="<%= user.getDescription() %>" />
+				
 			</div>
 		</div>
 		<h2>Умения</h2>
 
 		<div class="skills-container">
 			<div class="skills-container-element">
-			<% for(Skill skill:user.getProffesionalSkills()) { %>
+			
+			<% 	int i=0;
+			for(Skill skill:user.getProffesionalSkills()) { %>
 			
 				<div>
-					<label><%= skill.getSkillName() %></label>
-					<div class="outer-progress">
-						<div class="inner-progress" style="width: <%= skill.getSkillValue() %>%"></div>
-					</div>
+					<input type="text" name="prof-skill-name<%=i%>" value="<%= skill.getSkillName() %>" />
+					<input type="range" name="prof-skill-value<%=i%>" value="<%= skill.getSkillValue() %>" 
+					min="0" max="100" step="10"/>
+				
 				</div>
-			<% } %>
+			<% i++;
+			} %>
 			 
 			</div>
 
@@ -67,12 +75,12 @@
 			<div class="skills-container-element">
 				<div>
 					<label>E-mail</label>
-					 <p class="profile-info-in-orange"><%= user.getEmail() %></p>
+					<input type="text" name="email" value="<%= user.getEmail() %>" />
 				</div>
 
 				<div>
 					<label>Град</label>
-					 <p class="profile-info-in-orange"><%= user.getAddress().getCity() %></p>
+					<input type="text" name="city" value="<%= user.getAddress().getCity() %>" />
 				</div>
 
 			</div>
@@ -80,15 +88,17 @@
 			<div class="skills-container-element">
 				<div>
 					<label>Телефон</label>
-					 <p class="profile-info-in-orange"><%= user.getPhone() %></p>
-
+					<input type="text" name="phone" value="<%= user.getPhone() %>" />
 				</div>
 
 				<div>
 					<label>Улица</label>
-					 <p class="profile-info-in-orange"><%= user.getAddress().getStreet() %></p>				 
+					<input type="text" name="street" value="<%= user.getAddress().getStreet() %>" />
 				</div>			
 			</div>
+		</div>
+		<div>
+		<input type="submit" value="Актуализирай" />
 		</div>
 		</form>
 	</div>
