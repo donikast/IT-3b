@@ -57,15 +57,15 @@
 			</div>
 
 			<div class="skills-container-element">
-						<% for(Skill skill:user.getPersonalSkills()) { %>
+						<% int j=0;
+						for(Skill skill:user.getPersonalSkills()) { %>
 			
 				<div>
-					<label><%= skill.getSkillName() %></label>
-					<div class="outer-progress">
-						<div class="inner-progress" style="width: <%= skill.getSkillValue() %>%"></div>
-					</div>
+					<input type="text" name="personal-skill-name<%=j%>" value="<%= skill.getSkillName() %>" />
+					<input type="range" name="personal-skill-value<%=j%>" value="<%= skill.getSkillValue() %>" 
+					min="0" max="100" step="10"/>
 				</div>
-				<% } %>
+				<% j++;} %>
 			 
 			</div>
 		</div>
