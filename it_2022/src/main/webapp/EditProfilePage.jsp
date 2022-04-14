@@ -13,7 +13,7 @@
 <jsp:setProperty property="*" name="loggedUser" />
 <jsp:getProperty property="personalName" name="loggedUser"/>-->
 
-<% User user = (User)request.getAttribute("loggedUser"); %>
+<% User user = (User)session.getAttribute("loggedUser"); %>
 
 <jsp:include page="shared/header.jsp"></jsp:include>
 

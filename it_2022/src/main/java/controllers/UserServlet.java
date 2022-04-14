@@ -24,8 +24,20 @@ public class UserServlet extends HttpServlet {
 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+		int id = Integer.parseInt(request.getParameter("id"));
+		String action = request.getParameter("action");
+		User loggedUser = collection.getUserById(id);
+		request.setAttribute("loggedUser", loggedUser);
+		
+		if(action!=null && !action.isEmpty() && action.equals("edit")) {
+		RequestDispatcher rd = request.getRequestDispatcher("/EditProfilePage.jsp");
+		rd.forward(request, response);
+		}
+		else {
+		RequestDispatcher rd = request.getRequestDispatcher("/ProfilePage.jsp");
+		rd.forward(request, response);	
+		}
 	}
 
  
@@ -58,9 +70,11 @@ public class UserServlet extends HttpServlet {
 			updatedUser.getPersonalSkills().get(j).setSkillValue(skillValue);
 		}
 		
-			request.setAttribute("loggedUser", updatedUser);
-			RequestDispatcher rd = request.getRequestDispatcher("ProfilePage.jsp");
-			rd.forward(request, response);
+		response.sendRedirect("user?id="+updatedUser.getId());
+		
+			//request.setAttribute("loggedUser", updatedUser);
+			//RequestDispatcher rd = request.getRequestDispatcher("/ProfilePage.jsp");
+			//rd.forward(request, response);
 
 	}
 	
