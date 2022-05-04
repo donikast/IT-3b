@@ -16,14 +16,6 @@
   	<description></description>
   	<filter-class>filters.ProfilePagesAccess</filter-class>
   </filter>
-  <filter-mapping>
-  	<filter-name>AccessFilter</filter-name>
-  	<url-pattern>/AccessFilter</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-  	<filter-name>ProfilePagesAccess</filter-name>
-  	<url-pattern>/ProfilePagesAccess</url-pattern>
-  </filter-mapping>
   <servlet>
   	<servlet-name>RegistrationServlet</servlet-name>
   	<display-name>RegistrationServlet</display-name>
