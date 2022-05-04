@@ -4,6 +4,26 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>AccessFilter</filter-name>
+  	<display-name>AccessFilter</display-name>
+  	<description></description>
+  	<filter-class>filters.AccessFilter</filter-class>
+  </filter>
+  <filter>
+  	<filter-name>ProfilePagesAccess</filter-name>
+  	<display-name>ProfilePagesAccess</display-name>
+  	<description></description>
+  	<filter-class>filters.ProfilePagesAccess</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>AccessFilter</filter-name>
+  	<url-pattern>/AccessFilter</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>ProfilePagesAccess</filter-name>
+  	<url-pattern>/ProfilePagesAccess</url-pattern>
+  </filter-mapping>
   <servlet>
   	<servlet-name>RegistrationServlet</servlet-name>
   	<display-name>RegistrationServlet</display-name>
@@ -22,4 +42,14 @@
   	<description></description>
   	<servlet-class>controllers.UserServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LoguotServlet</servlet-name>
+  	<display-name>LoguotServlet</display-name>
+  	<description></description>
+  	<servlet-class>controllers.LoguotServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoguotServlet</servlet-name>
+  	<url-pattern>/LoguotServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
