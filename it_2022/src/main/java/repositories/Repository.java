@@ -48,4 +48,8 @@ public class Repository {
 		return null;
 	}
 
+	public static Set<User> getCollection() {
+		return collection;
+	}
+
 }
