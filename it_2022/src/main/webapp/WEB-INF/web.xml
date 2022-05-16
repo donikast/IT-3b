@@ -58,6 +58,16 @@
   	<description></description>
   	<servlet-class>controllers.ErrorHandler</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AsyncEditInfoServlet</servlet-name>
+  	<display-name>AsyncEditInfoServlet</display-name>
+  	<description></description>
+  	<servlet-class>controllers.AsyncEditInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AsyncEditInfoServlet</servlet-name>
+  	<url-pattern>/AsyncEditInfoServlet</url-pattern>
+  </servlet-mapping>
   
   <error-page>
   <error-code>404</error-code>

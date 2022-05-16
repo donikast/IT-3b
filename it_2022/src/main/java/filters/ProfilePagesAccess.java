@@ -15,8 +15,7 @@ import models.User;
 
 @WebFilter("/user")
 public class ProfilePagesAccess extends HttpFilter {
-       
- 
+        
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpServletResponse res=(HttpServletResponse) response;

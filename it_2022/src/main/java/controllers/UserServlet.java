@@ -41,7 +41,7 @@ public class UserServlet extends HttpServlet {
 		}
 		
 		if(action!=null && !action.isEmpty() && action.equals("edit")) {
-		RequestDispatcher rd = request.getRequestDispatcher("/EditProfilePage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/AsyncEditProfilePage.jsp");
 		rd.forward(request, response);
 		}
 		else {
