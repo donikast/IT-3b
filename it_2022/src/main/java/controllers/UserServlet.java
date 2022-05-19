@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 
+import org.xml.sax.SAXException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
@@ -20,7 +22,12 @@ public class UserServlet extends HttpServlet {
 
 	Repository collection;
 	public void init(ServletConfig config) throws ServletException {
-		collection=Repository.getInstance();
+		try {
+			collection=Repository.getInstance();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
  
@@ -79,6 +86,8 @@ public class UserServlet extends HttpServlet {
 			String skillValue = request.getParameter("personal-skill-value"+j);
 			updatedUser.getPersonalSkills().get(j).setSkillValue(skillValue);
 		}
+		
+		collection.updateXML();
 		
 		response.sendRedirect("user?id="+updatedUser.getId());
 		

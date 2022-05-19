@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.xml.sax.SAXException;
+
 import com.google.gson.Gson;
 
 import jakarta.servlet.Servlet;
@@ -24,7 +26,12 @@ public class AsyncEditInfoServlet extends HttpServlet {
 	Gson gson;
 	
 	public void init(ServletConfig config) throws ServletException {
-		collection = Repository.getInstance();
+		try {
+			collection = Repository.getInstance();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		gson = new Gson();
 	}
 

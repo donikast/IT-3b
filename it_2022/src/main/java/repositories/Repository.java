@@ -1,22 +1,51 @@
 package repositories;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.xml.sax.SAXException;
+
 import models.User;
+import xml.XMLWorker;
+
+@XmlRootElement(name="users")
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Repository {
 	
 	private static Repository instance = null;
-	private static Set<User> collection;
-	static int index=1;
 	
+	@XmlElement(name="user")
+	private static Set<User> collection = new HashSet<User>();
+	static int index=1;
+	private static String pathToXml = "C:\\Users\\MYPC\\git\\repository27\\it_2022\\src\\main\\webapp\\xml\\storage.xml";
+	private static String pathToSchema = "C:\\Users\\MYPC\\git\\repository27\\it_2022\\src\\main\\webapp\\xml\\schema.xsd";
+
 	private Repository() {}
 	
-	public static Repository getInstance() {
+	public static Repository getInstance() throws SAXException {
 		if(instance == null) {
-			instance = new Repository();
-			collection = new HashSet<User>();
+			XMLWorker worker = new XMLWorker();
+			 
+				try {
+					instance = worker.readFromXmlFile(pathToXml,pathToSchema);				
+					index = collection.size()+1;
+
+				} catch (FileNotFoundException | UnsupportedEncodingException | JAXBException | SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 
+
+			//instance = new Repository();
 		}
 		return instance;
 	}
@@ -24,6 +53,7 @@ public class Repository {
 	public void addUser(User user) {
 		user.setId(index++);
 		collection.add(user);
+		updateXML();
 	}
 	
 	public boolean ifExist(User user) {
@@ -50,6 +80,16 @@ public class Repository {
 
 	public static Set<User> getCollection() {
 		return collection;
+	}
+	
+	public void updateXML() {
+		XMLWorker worker = new XMLWorker();
+		try {
+			worker.writeToXmlFile(pathToXml, this);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

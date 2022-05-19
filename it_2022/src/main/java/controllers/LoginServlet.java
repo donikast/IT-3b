@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.xml.sax.SAXException;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
@@ -15,13 +17,18 @@ import jakarta.servlet.http.HttpSession;
 import models.User;
 import repositories.Repository;
 
-@WebServlet("/login")
+@WebServlet(urlPatterns={"/login","/index.html","/index.jsp"})
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Repository collection;
 	public void init(ServletConfig config) throws ServletException {
-		collection = Repository.getInstance();
+		try {
+			collection = Repository.getInstance();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
  
